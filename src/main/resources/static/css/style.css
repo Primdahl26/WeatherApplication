@@ -1,0 +1,65 @@
+/*
+	stylesheet for weather app
+*/
+body {
+    background-image: url("../img/CarForest.jpg") ;
+    min-height: 100vh;
+    background-size: auto;
+    background-position: center;
+    background-repeat: repeat;
+    margin: 0 auto;
+    color: WHITE;
+}
+
+/* navbar */
+.navbar {
+    background-color: rgb(36, 34, 38);
+}
+
+.navbar a {
+    color: white;
+    font-size: 25px;
+}
+
+/* weather section */
+.weather {
+    border:1px solid white;
+    margin-top: 2rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    color: white;
+}
+
+.weather-head {
+    height: 50%;
+}
+
+#icon-desc {
+    font-size: 5rem;
+    padding-top: 2rem;
+}
+
+.humidity, .wind, .visibility {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    font-size: 1.5rem;
+
+}
+
+#description {
+    font-size: 2rem;
+}
+
+#temperature {
+    font-size: 7rem;
+}
+
+#icon-thermometer {
+    font-size: 5rem;
+}
+
+#humidity, #wind, #visibility {
+    font-size: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}

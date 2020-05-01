@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Site</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <!-- fontawesome -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- weather icons -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css">
+    <!-- stylesheet -->
+    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
+
+    <script src="/js/time.js"></script>
+
+</head>
+<body>
+<div class="hero">
+    <!-- navbar -->
+    <nav class="navbar">
+        <a class="navbar-brand" href="#">
+            <i class="fa fa-sun-o" aria-hidden="true"></i>
+            <strong>Local</strong>Weather
+        </a>
+        <span id="date" class="lead">
+            <div id="time_span">
+                <p id="datetime"></p>
+            </div>
+        </span>
+    </nav>
+    <!-- weather section -->
+    <br><h1 class="text-center">Selected overview</h1>
+    <h2 class="text-center">Current weather</h2>
+    {{#summary}}
+    <div class="container">
+        <div class="row">
+            <div id="" class="col-8 mx-auto weather">
+                <!-- weather header section -->
+                <div class="weather-head">
+                    <h1 style="text-transform: capitalize" id="location" class="text-center display-4">{{city}}, {{country}}</h1>
+                    <div class="row">
+                        <div id="description" class="description col-6 text-center">
+                            <img src="http://openweathermap.org/img/wn/{{icon}}@2x.png" id="icon-desc" class="icon-desc" alt=""/>
+                            <p class="desc">{{description}}</p>
+                        </div>
+                        <div id="temperature" class="col-6 text-center">
+                            {{celsiusTemperature}} <i id="icon-thermometer" class="wi wi-thermometer"></i>
+                        </div>
+                    </div>
+                    <!-- weather body header -->
+                    <div class="weather-body">
+                        <div class="row">
+                            <div class="humidity col-4 text-center">
+                                <i class="wi wi-raindrop"></i><span> Humidity</span>
+                            </div>
+                            <div class="wind col-4 text-center">
+                                <i class="wi wi-strong-wind"></i><span> Wind Speed</span>
+                            </div>
+                            <div class="visibility col-4 text-center">
+                                <i class="fa fa-eye"></i><span> Visibility</span>
+                            </div>
+                        </div>
+                        <!-- weather body data -->
+                        <div class="row">
+                            <div id="humidity" class="humidity-data col-4 text-center">
+                                {{humidity}}%
+                            </div>
+                            <div id="wind" class="wind-data col-4 text-center">
+                                {{windSpeed}} m/s
+                            </div>
+                            <div id="visibility" class="degree-data col-4 text-center">
+                                {{visibility}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/summary}}
+<br><br>
+</body>
+</html>
