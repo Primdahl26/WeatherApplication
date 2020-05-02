@@ -66,6 +66,6 @@ public class WeatherSummary {
 
     public String getCelsiusTemperature() {
         double celsiusTemp = this.temperature - 273.15;
-        return String.format("%4.2f", celsiusTemp);
+        return String.format("%4.1f", celsiusTemp);
     }
 }
