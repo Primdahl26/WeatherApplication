@@ -33,9 +33,7 @@ public class WeatherEntry {
                         .withLocale(Locale.UK)
                         .withZone(ZoneId.systemDefault());
 
-        String output = formatter.format(this.timestamp);
-
-        return output;
+        return formatter.format(this.timestamp);
     }
 
     @JsonSetter("dt")
