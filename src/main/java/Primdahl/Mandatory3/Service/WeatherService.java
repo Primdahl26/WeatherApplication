@@ -1,9 +1,13 @@
-package Primdahl.Mandatory3.API;
+package Primdahl.Mandatory3.Service;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 import Primdahl.Mandatory3.Model.Weather;
 import Primdahl.Mandatory3.Model.WeatherForecast;
+import Primdahl.Mandatory3.Model.WeatherSummary;
+import Primdahl.Mandatory3.Repository.WeatherSummaryRepository;
 import Primdahl.Mandatory3.WeatherAppProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,10 +35,13 @@ public class WeatherService {
 
     private final String apiKey;
 
+    private final WeatherSummaryRepository weatherSummaryRepository;
+
     public WeatherService(RestTemplateBuilder restTemplateBuilder,
-                          WeatherAppProperties properties) {
+                          WeatherAppProperties properties, WeatherSummaryRepository weatherSummaryRepository) {
         this.restTemplate = restTemplateBuilder.build();
         this.apiKey = properties.getApi().getKey();
+        this.weatherSummaryRepository = weatherSummaryRepository;
     }
 
     public Weather getWeather(String country, String city) {
@@ -55,5 +62,23 @@ public class WeatherService {
         ResponseEntity<T> exchange = this.restTemplate
                 .exchange(request, responseType);
         return exchange.getBody();
+    }
+
+    // DB
+    public List<WeatherSummary> getWeatherSummaryList() {
+        List<WeatherSummary> weatherSummaries = new ArrayList<>();
+        weatherSummaryRepository.findAll().iterator().forEachRemaining(weatherSummaries::add);
+        logger.info("Getting weather summaries from database: " +
+                weatherSummaryRepository.findAll().toString());
+        return weatherSummaries;
+    }
+
+    public void create(WeatherSummary weatherSummary) {
+        weatherSummaryRepository.save(weatherSummary);
+        logger.info("Putting weather summary to database: " + weatherSummary.toString());
+    }
+
+    public void deleteById(Long id) {
+        weatherSummaryRepository.delete(id);
     }
 }

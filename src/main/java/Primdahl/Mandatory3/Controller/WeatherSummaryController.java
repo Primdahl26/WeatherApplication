@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import Primdahl.Mandatory3.API.WeatherService;
+import Primdahl.Mandatory3.Service.WeatherService;
 import Primdahl.Mandatory3.Model.Weather;
 import Primdahl.Mandatory3.Model.WeatherSummary;
 import Primdahl.Mandatory3.WeatherAppProperties;
@@ -31,6 +31,7 @@ public class WeatherSummaryController {
     public ModelAndView conferenceWeather() {
         Map<String, Object> model = new LinkedHashMap<>();
         model.put("summary", getSummary());
+
         return new ModelAndView("summary", model);
     }
 
@@ -41,6 +42,8 @@ public class WeatherSummaryController {
             String city = location.split("/")[1];
             Weather weather = this.weatherService.getWeather(country, city);
             summary.add(createWeatherSummary(country, city, weather));
+
+            weatherService.create(createWeatherSummary(country, city, weather));
         }
         return summary;
     }

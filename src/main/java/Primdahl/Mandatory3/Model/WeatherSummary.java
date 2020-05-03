@@ -1,12 +1,17 @@
 package Primdahl.Mandatory3.Model;
 
+import javax.persistence.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Locale;
 
+@Entity
 public class WeatherSummary {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private long id;
     private String country;
     private String city;
     private Integer code;
@@ -31,24 +36,34 @@ public class WeatherSummary {
         this.timestamp = weather.getTimestamp();
     }
 
+    public WeatherSummary(){}
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getDescription() {
         return description;
     }
 
     public String getCountry() {
-        return this.country;
+        return country;
     }
 
     public String getCity() {
-        return this.city;
+        return city;
     }
 
     public Integer getCode() {
-        return this.code;
+        return code;
     }
 
     public String getIcon() {
-        return this.icon;
+        return icon;
     }
 
     public int getHumidity() {
@@ -56,7 +71,7 @@ public class WeatherSummary {
     }
 
     public double getWindSpeed() {
-        return this.windSpeed;
+        return windSpeed;
     }
 
     public int getVisibility() {
@@ -91,5 +106,4 @@ public class WeatherSummary {
                 dayOfWeek.toString().substring(1).toLowerCase()+" "+
                 formatter.format(this.timestamp);
     }
-
 }

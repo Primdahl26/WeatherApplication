@@ -1,6 +1,6 @@
 package Primdahl.Mandatory3.Controller;
 
-import Primdahl.Mandatory3.API.WeatherService;
+import Primdahl.Mandatory3.Service.WeatherService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -3,7 +3,6 @@ package Primdahl.Mandatory3.Model;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -11,8 +10,17 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class WeatherEntry {
 
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private long id;
     private Instant timestamp;
     private double temperature;
     private Integer weatherId;
@@ -59,12 +67,12 @@ public class WeatherEntry {
 
     @JsonProperty("visibility")
     public int getVisibility() {
-        return this.visibility;
+        return visibility;
     }
 
     // Return the temperature in Kelvin (K).
     public double getTemperature() {
-        return this.temperature;
+        return temperature;
     }
 
     public void setTemperature(double temperature) {
@@ -83,7 +91,7 @@ public class WeatherEntry {
     }
 
     public Integer getWeatherId() {
-        return this.weatherId;
+        return weatherId;
     }
 
     public void setWeatherId(Integer weatherId) {
@@ -91,11 +99,11 @@ public class WeatherEntry {
     }
 
     public String getWeatherIcon() {
-        return this.weatherIcon;
+        return weatherIcon;
     }
 
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     public void setDescription(String description) {
@@ -107,7 +115,7 @@ public class WeatherEntry {
     }
 
     public int getHumidity() {
-        return this.humidity;
+        return humidity;
     }
 
     public void setHumidity(int humidity) {
@@ -115,7 +123,15 @@ public class WeatherEntry {
     }
 
     public double getWindSpeed() {
-        return this.windSpeed;
+        return windSpeed;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public void setWind(double wind) {
