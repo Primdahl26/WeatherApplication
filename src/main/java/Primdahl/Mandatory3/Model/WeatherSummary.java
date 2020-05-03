@@ -1,6 +1,9 @@
 package Primdahl.Mandatory3.Model;
 
-import java.time.Instant;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Locale;
 
 public class WeatherSummary {
 
@@ -13,7 +16,7 @@ public class WeatherSummary {
     private double windSpeed;
     private int humidity;
     private int visibility;
-    private Instant timeStamp;
+    private Instant timestamp;
 
     public WeatherSummary(String country, String city, Weather weather) {
         this.country = country;
@@ -25,7 +28,7 @@ public class WeatherSummary {
         this.windSpeed = weather.getWindSpeed();
         this.humidity = weather.getHumidity();
         this.visibility = weather.getVisibility();
-        this.timeStamp = weather.getTimestamp();
+        this.timestamp = weather.getTimestamp();
     }
 
     public String getDescription() {
@@ -60,12 +63,33 @@ public class WeatherSummary {
         return visibility;
     }
 
-    public Instant getTimeStamp() {
-        return timeStamp;
+    public Instant getTimestamp() {
+        return timestamp;
     }
 
     public String getCelsiusTemperature() {
         double celsiusTemp = this.temperature - 273.15;
         return String.format("%4.1f", celsiusTemp);
     }
+
+    public String getFormattedTime(){
+        DateTimeFormatter formatter =
+                DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
+                        .withLocale(Locale.UK)
+                        .withZone(ZoneId.systemDefault());
+
+
+        DayOfWeek dayOfWeek = this.timestamp.atZone(ZoneId.systemDefault()).getDayOfWeek();
+
+        LocalDate currentDate = LocalDateTime.ofInstant(Instant.now(), ZoneId.systemDefault()).toLocalDate();
+        LocalDate weatherDate = LocalDateTime.ofInstant(this.timestamp, ZoneId.systemDefault()).toLocalDate();
+
+        if (currentDate.equals(weatherDate)){
+            return "Today "+formatter.format(this.timestamp);
+        }
+        return dayOfWeek.toString().substring(0, 1).toUpperCase()+
+                dayOfWeek.toString().substring(1).toLowerCase()+" "+
+                formatter.format(this.timestamp);
+    }
+
 }

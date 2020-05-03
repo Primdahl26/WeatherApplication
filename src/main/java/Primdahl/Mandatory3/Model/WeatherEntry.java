@@ -1,9 +1,9 @@
 package Primdahl.Mandatory3.Model;
 
-import java.time.Instant;
-import java.time.ZoneId;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -33,7 +33,18 @@ public class WeatherEntry {
                         .withLocale(Locale.UK)
                         .withZone(ZoneId.systemDefault());
 
-        return formatter.format(this.timestamp);
+
+        DayOfWeek dayOfWeek = this.timestamp.atZone(ZoneId.systemDefault()).getDayOfWeek();
+
+        LocalDate currentDate = LocalDateTime.ofInstant(Instant.now(), ZoneId.systemDefault()).toLocalDate();
+        LocalDate weatherDate = LocalDateTime.ofInstant(this.timestamp, ZoneId.systemDefault()).toLocalDate();
+
+        if (currentDate.equals(weatherDate)){
+            return "Today "+formatter.format(this.timestamp);
+        }
+        return dayOfWeek.toString().substring(0, 1).toUpperCase()+
+                dayOfWeek.toString().substring(1).toLowerCase()+" "+
+                formatter.format(this.timestamp);
     }
 
     @JsonSetter("dt")

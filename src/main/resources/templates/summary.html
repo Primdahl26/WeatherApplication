@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Weather Site</title>
+    <title>Hanne Weather</title>
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     <!-- fontawesome -->
@@ -10,23 +10,35 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css">
     <!-- stylesheet -->
     <link href="/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/radio.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/search.css" rel="stylesheet" type="text/css"/>
 
-    <script src="/js/time.js"></script>
+    <script type="text/javascript">
+        function get_action(form) {
+            form.action = '/'+document.querySelector('input[name="NowOrWeekly"]:checked').value+
+                '/'+document.getElementById("searchText").value;
+        }
+    </script>
 
 </head>
 <body>
 <div class="hero">
     <!-- navbar -->
     <nav class="navbar">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <i class="fa fa-sun-o" aria-hidden="true"></i>
             <strong>Hanne</strong>Weather
         </a>
-        <span id="date" class="lead">
-            <div id="time_span">
-                <p id="datetime"></p>
+        <form onsubmit="get_action(this);">
+            <div class="radio-toolbar">
+                <input type="radio" id="weekly" name="NowOrWeekly" value="weekly" checked>
+                <label for="weekly">Weekly weather</label>
+                <input type="radio" id="now" name="NowOrWeekly" value="now">
+                <label for="now">Current weather</label>
+                <input type="text" id="searchText" name="searchText" placeholder="Country/City" pattern="^(?=.*/).+" title="Country/City">
+                <input type="submit" id="go" value="Search">
             </div>
-        </span>
+        </form>
     </nav>
     <!-- weather section -->
     <br><h1 class="text-center">Selected overview</h1>
@@ -38,6 +50,7 @@
                 <!-- weather header section -->
                 <div class="weather-head">
                     <h1 style="text-transform: capitalize" id="location" class="text-center display-4">{{city}}, {{country}}</h1>
+                        <h4 style="text-transform: capitalize" class="text-center">{{formattedTime}}</h4>
                     <div class="row">
                         <div id="description" class="description col-6 text-center">
                             <img src="http://openweathermap.org/img/wn/{{icon}}@2x.png" id="icon-desc" class="icon-desc" alt=""/>
