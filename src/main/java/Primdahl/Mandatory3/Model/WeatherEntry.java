@@ -15,6 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+//TODO: Cleanup & comment
+
 @Entity
 public class WeatherEntry {
 
@@ -137,7 +139,6 @@ public class WeatherEntry {
     public void setWind(double wind) {
         this.windSpeed = wind;
     }
-
 
     @JsonProperty("weather")
     public void setWeather(List<Map<String, Object>> weatherEntries) {

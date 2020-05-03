@@ -20,6 +20,7 @@ public class WeatherForecast {
         this.name = name;
     }
 
+    // So we can get the different entries, since a forecasts has multiple
     @JsonProperty("entries")
     public List<WeatherEntry> getEntries() {
         return this.entries;

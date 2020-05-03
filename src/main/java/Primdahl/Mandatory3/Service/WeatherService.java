@@ -20,6 +20,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriTemplate;
 
+//TODO: Comment
+
 @Service
 public class WeatherService {
 
@@ -64,7 +66,9 @@ public class WeatherService {
         return exchange.getBody();
     }
 
-    // DB
+    // Database part
+
+    // Gets weather summary from the database
     public List<WeatherSummary> getWeatherSummaryList() {
         List<WeatherSummary> weatherSummaries = new ArrayList<>();
         weatherSummaryRepository.findAll().iterator().forEachRemaining(weatherSummaries::add);
@@ -73,11 +77,13 @@ public class WeatherService {
         return weatherSummaries;
     }
 
+    // Puts a weather summary to the database
     public void create(WeatherSummary weatherSummary) {
         weatherSummaryRepository.save(weatherSummary);
         logger.info("Putting weather summary to database: " + weatherSummary.toString());
     }
 
+    // Deletes and item in the database (by ID)
     public void deleteById(Long id) {
         weatherSummaryRepository.delete(id);
     }

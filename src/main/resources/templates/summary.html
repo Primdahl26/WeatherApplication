@@ -12,7 +12,7 @@
     <link href="/css/style.css" rel="stylesheet" type="text/css"/>
     <link href="/css/radio.css" rel="stylesheet" type="text/css"/>
     <link href="/css/search.css" rel="stylesheet" type="text/css"/>
-
+    <!--- script --->
     <script type="text/javascript">
         function get_action(form) {
             form.action = '/'+document.querySelector('input[name="NowOrWeekly"]:checked').value+
@@ -29,13 +29,16 @@
             <i class="fa fa-sun-o" aria-hidden="true"></i>
             <strong>Hanne</strong>Weather
         </a>
+        <div class="menu" href="/historical" >
+            <a href="/historical">Historical Data</a>
+        </div>
         <form onsubmit="get_action(this);">
             <div class="radio-toolbar">
                 <input type="radio" id="weekly" name="NowOrWeekly" value="weekly" checked>
                 <label for="weekly">Weekly weather</label>
                 <input type="radio" id="now" name="NowOrWeekly" value="now">
                 <label for="now">Current weather</label>
-                <input type="text" id="searchText" name="searchText" placeholder="Country/City" pattern="^(?=.*/).+" title="Country/City">
+                <input type="text" id="searchText" name="searchText" placeholder="Country/City" pattern="^(?=.*/).+" title="Country/City" required>
                 <input type="submit" id="go" value="Search">
             </div>
         </form>

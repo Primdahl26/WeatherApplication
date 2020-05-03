@@ -10,7 +10,7 @@ input[type=text] {
 
 input[type=button], input[type=submit], input[type=reset] {
     background-color: #35243c;
-    border: none;
+    border: 2px solid #28002b;
     color: white;
     padding: 10px 20px;
     text-align: center;
@@ -22,8 +22,8 @@ input[type=button], input[type=submit], input[type=reset] {
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
-    background-color: #009103;
-    border: none;
+    background-color: #684975;
+    border-color: #28002b;
     color: white;
     padding: 10px 20px;
     text-align: center;

@@ -82,26 +82,36 @@ public class WeatherSummary {
         return timestamp;
     }
 
+    // Converts temperature to celsius
     public String getCelsiusTemperature() {
         double celsiusTemp = this.temperature - 273.15;
         return String.format("%4.1f", celsiusTemp);
     }
 
+    // Formats time to: Dayname date time
+    // Example: Monday 03/05/20 23:30
     public String getFormattedTime(){
+
+        // Formats the instant timestamp to: date time
+        // Example: 03/05/20 23:30
         DateTimeFormatter formatter =
                 DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
                         .withLocale(Locale.UK)
                         .withZone(ZoneId.systemDefault());
 
 
+        // To compare, so we can see if the date is today
         DayOfWeek dayOfWeek = this.timestamp.atZone(ZoneId.systemDefault()).getDayOfWeek();
 
         LocalDate currentDate = LocalDateTime.ofInstant(Instant.now(), ZoneId.systemDefault()).toLocalDate();
         LocalDate weatherDate = LocalDateTime.ofInstant(this.timestamp, ZoneId.systemDefault()).toLocalDate();
 
+        // If the date is today
         if (currentDate.equals(weatherDate)){
             return "Today "+formatter.format(this.timestamp);
         }
+
+        // Makes it so the first letter of the word is uppercase and rest is lowercase
         return dayOfWeek.toString().substring(0, 1).toUpperCase()+
                 dayOfWeek.toString().substring(1).toLowerCase()+" "+
                 formatter.format(this.timestamp);

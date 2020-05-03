@@ -9,8 +9,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("app.weather")
 public class WeatherAppProperties {
 
+    // Requires the API key to be valid for the program to run
     @Valid
     private final Api api = new Api();
+
+    // The different locations that is given in the application.properties file
     private List<String> locations;
     public Api getApi() {
         return this.api;
@@ -26,7 +29,6 @@ public class WeatherAppProperties {
         // API key of the OpenWeatherMap service
         @NotNull
         private String key;
-
         public String getKey() {
             return this.key;
         }

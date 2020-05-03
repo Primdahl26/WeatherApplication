@@ -27,6 +27,15 @@ body {
     font-size: 25px;
 }
 
+.menu {
+    position: relative;
+    right: 375px;
+}
+
+.menu a{
+    font-size: 20px;
+}
+
 /* weather section */
 .weather {
     border:1px solid white;
@@ -69,3 +78,5 @@ body {
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
+
+
